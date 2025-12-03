@@ -4,28 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Week6.Task_1
+namespace Week6
 {
-
-    public class Rectangle
+    internal class Rectangle
     {
-
-        public double length;
-        public double breadth;
-
-        public double Length
+        public class rectangle
         {
-            get => length;
-            set => length = value;
-        }
+            private double length;
+            private double breadth;
 
-        public double Breadth
-        {
-            get => breadth;
-            set => breadth = value;
-        }
+            public double Length
+            {
+                get => length; 
+                set => length = value; 
+            }
 
-        public double Perimeter(double length, double breadth) => 2 * (length + breadth);
+            public double breadthProperty
+            {
+                get => breadth; 
+                set => breadth = value;
+            }
+
+            public double Getperimeter()
+            {
+                return 2*(length * breadth);
+            }
+
+            public String showDetails()
+            {
+                return $"Length: {length}, Width: {breadth}, Area: {Getperimeter()}";
+            }
+        }
     }
 }
-

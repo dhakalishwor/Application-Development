@@ -1,35 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Week6.Task_2
+namespace Week6
 {
-    public class Progran
+    internal class Calculate
     {
-        public delegate int Calculate(int x, int y);
+        // Delegate for arithmetic operations
+        public delegate int Operation(int num1, int num2);
 
-        public static int Add(int x, int y) => x + y;
-
-        public static int Subtract(int x, int y) => x - y;
-
+        // Delegate for discount strategies
         public delegate double DiscountStrategy(double price);
-        public static double SesonalDiscount(double price) => price * 0.8;
 
+        public static int Add(int num1, int num2) => num1 + num2;
+        public static int Subtract(int num1, int num2) => num1 - num2;
+
+        public static double SeasonalDiscount(double price) => price * 0.8;
         public static double FestivalDiscount(double price) => price * 0.9;
-
         public static double NoDiscount(double price) => price;
-        
 
-        public static double CalculateFinalPrice(double originalPrice, DiscountStrategy strategy)
+        static void Main(string[] args)
         {
-            return strategy(originalPrice);
-        }
-         static void Main(string[] args)
-        {
-            Console.WriteLine("Seasonal Discount on 1000" + CalculateFinalPrice(1000, SeasonalDiscount);    
+            // Arithmetic delegate
+            Operation cal;
+
+            cal = Add;
+            Console.WriteLine("Addition: " + cal(10, 5));
+
+            cal = Subtract;
+            Console.WriteLine("Subtraction: " + cal(10, 5));
+
+            // Discount delegate
+            DiscountStrategy discount;
+
+            discount = SeasonalDiscount;
+            Console.WriteLine("Seasonal Discount on 1000: " + discount(1000));
+
+            discount = FestivalDiscount;
+            Console.WriteLine("Festival Discount on 1000: " + discount(1000));
+
+            discount = NoDiscount;
+            Console.WriteLine("No Discount on 1000: " + discount(1000));
         }
     }
 }
